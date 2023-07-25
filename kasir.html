@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KARANG RESTO</title>
+    <style>
+        .tengah {
+            background-image: url(img/background-2-transformed.png);
+            background-position: center;
+            width: auto;
+            height: auto;
+        }
+        table {
+            background: rgb(247, 247, 247);
+            margin: auto;
+        }
+    </style>
+</head>
+<body class="tengah">
+    <div>
+        <form>
+            <table border="1">
+                <h1 align="center" style="background: orange">KARANG RESTO</h1>
+                <tr>    
+                    <th>Nama Pelanggan</th>
+                    <th><input type="text"  id="nama" onchange="calculateTotal()" ></th>
+                </tr>
+                <tr>    
+                    <th>Menu</th>
+                    <th><select id="status" onchange="calculateTotal()">
+                        <option>Rawon</option>
+                        <option>Sop Buah</option>
+                        <option>Nasi Goreng</option>
+                        <option>Bakso</option>
+                        <option>Ayam Gorengt</option>
+                        <option>Sate Ayam</option>
+                        <option>Ayam Bakar</option>
+                        <option>Rendang</option>
+                        <option>Matcha Latte</option>
+                        <option>Es Teh</option>
+                        <option>Es Jeruk</option>
+                        <option>Mango Thai</option>
+                        <option>Boba Milk</option>
+                        <option>Milkshaket</option>
+                        <option>Es Coklat</option>
+                        <option>Jus Buah</option>
+                    </select></th>
+                </tr>
+                <tr>    
+                    <th>Jumlah Beli</th>    
+                    <th><input type="number" id="jumlah"  value="0" onchange="calculateTotal()"></th>
+                </tr> 
+                <tr>    
+                    <th>Harga</th>
+                    <th><input type="number"  id="harga" onchange="calculateTotal()"></th>
+                </tr> 
+                <tr>    
+                    <th>Jumlah Total</th>
+                    <th><input type="text" style="background: rgb(0, 0, 0)" id="total" disabled></th>
+                </tr>
+
+                <tr>    
+                    <th>Pembayaran</th>    
+                    <th><input type="number" id="bayar" onchange="calculateTotal()"></th>
+                </tr>
+                
+                <tr>    
+                    <th>Kembalian</th>
+                    <th><input type="text" style="background: rgb(0, 0, 0)" id="total1" disabled></th>
+                </tr>
+        
+                <tr>
+                    <th><input type="button" style="background: white"  onclick="window.print()" value="CETAK"></th>
+                </tr>
+                <tr>   
+                    <table width="300" height="201px" border="8">
+                        <th><label align="landscape"  id="cetak" ></label></th>
+                    </table>
+                </tr>         
+            </table>
+        </form>
+        <marquee scrolldelay="100" direction="left" bgcolor="orange"><h3> TERIMA KASIH ATAS KUNJUNGANNYA </marquee></h3>
+    </div>
+    <script type="text/javascript">
+        function calculateTotal() {
+            var nama = document.getElementById('nama').value;
+            var harga = parseInt(document.getElementById('harga').value);
+            var jumlah_beli = parseInt(document.getElementById('jumlah').value);
+            var pembayaran = parseInt(document.getElementById('bayar').value);
+            var menu = document.getElementById("status").value;
+            var jumlah_harga = harga * jumlah_beli;
+            document.getElementById('total').value = jumlah_harga;
+
+            var kembali = pembayaran - jumlah_harga;
+            document.getElementById('total1').value = kembali;
+        
+            var cetak = "Nama Pelanggan    : "+nama+"</br>"+
+                                "Harga   : "+harga+"</br>"+
+                                "Jumlah beli  : "+jumlah_beli+"</br>"+
+                                "Menu   : "+menu+"</br>"+
+                                "Jumlah total  : "+jumlah_harga+"</br>"+
+                                "pembayaran  : "+pembayaran+"</br>"+
+                                "Kembalian  : "+kembali;
+            document.getElementById("cetak").innerHTML=cetak;
+        }
+    </script>
+</body>
+</html>

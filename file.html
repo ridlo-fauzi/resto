@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>KARANG RESTO</title>
+    <style>
+      .tengah {
+        background-image: url(img/background-2-transformed.png);
+        background-position: center;
+        width: auto;
+        height: auto;
+      }
+      table {
+        background: rgb(247, 247, 247);
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body class="tengah">
+    <div>
+      <form id="orderForm">
+        <h1 align="center" style="background: orange">KARANG RESTO</h1>
+        <table border="1">
+          <tr>
+            <th>Nama Pelanggan</th>
+            <td><input type="text" id="nama" /></td>
+          </tr>
+          <tr>
+            <th>Menu</th>
+            <td>
+              <select id="menu">
+                <option value="Rawon">Rawon</option>
+                <option value="Sop Buah">Sop Buah</option>
+                <option value="Nasi Goreng">Nasi Goreng</option>
+                <!-- Tambahkan opsi menu lainnya sesuai kebutuhan -->
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th>Jumlah Beli</th>
+            <td><input type="number" id="jumlah" value="0" /></td>
+          </tr>
+          <tr>
+            <th>Harga</th>
+            <td><input type="number" id="harga" /></td>
+          </tr>
+          <tr>
+            <th>Jumlah Total</th>
+            <td>
+              <input
+                type="text"
+                style="background: rgb(0, 0, 0)"
+                id="total"
+                disabled
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>Pembayaran</th>
+            <td><input type="number" id="bayar" /></td>
+          </tr>
+          <tr>
+            <th>Kembalian</th>
+            <td>
+              <input
+                type="text"
+                style="background: rgb(0, 0, 0)"
+                id="kembalian"
+                disabled
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <input type="submit" style="background: white" value="CETAK" />
+            </td>
+          </tr>
+        </table>
+      </form>
+      <div id="output" style="margin-top: 20px; text-align: center"></div>
+      <marquee scrolldelay="100" direction="left" bgcolor="orange"
+        ><h3>TERIMA KASIH ATAS KUNJUNGANNYA</h3></marquee
+      >
+    </div>
+    <script type="text/javascript">
+      var orderForm = document.getElementById("orderForm");
+      orderForm.addEventListener("submit", function (e) {
+        e.preventDefault(); // Menghentikan aksi default dari form
+
+        var nama = document.getElementById("nama").value;
+        var harga = parseInt(document.getElementById("harga").value);
+        var jumlahBeli = parseInt(document.getElementById("jumlah").value);
+        var menu = document.getElementById("menu").value;
+        var total = harga * jumlahBeli;
+        var pembayaran = parseInt(document.getElementById("bayar").value);
+        var kembalian = pembayaran - total;
+
+        var output =
+          "<h2>Detail Pesanan:</h2>" +
+          "<p><strong>Nama Pelanggan:</strong> " +
+          nama +
+          "</p>" +
+          "<p><strong>Menu:</strong> " +
+          menu +
+          "</p>" +
+          "<p><strong>Jumlah Beli:</strong> " +
+          jumlahBeli +
+          "</p>" +
+          "<p><strong>Harga:</strong> " +
+          harga +
+          "</p>" +
+          "<p><strong>Jumlah Total:</strong> " +
+          total +
+          "</p>" +
+          "<p><strong>Pembayaran:</strong> " +
+          pembayaran +
+          "</p>" +
+          "<p><strong>Kembalian:</strong> " +
+          kembalian +
+          "</p>";
+
+        document.getElementById("output").innerHTML = output;
+      });
+    </script>
+  </body>
+</html>
